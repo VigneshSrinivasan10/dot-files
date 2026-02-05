@@ -2,18 +2,34 @@
 
 Personal dotfiles configuration repository.
 
-## Setup
+## Quick Install
+
+Run the installation script to set up everything automatically:
+
+```bash
+git clone https://github.com/YOUR_USERNAME/dot-files.git ~/Projects/dot-files
+cd ~/Projects/dot-files
+./install.sh
+```
+
+This will install:
+- zsh (if not present)
+- Oh My Zsh
+- Powerlevel10k theme
+- zsh plugins (autosuggestions, syntax-highlighting, completions, z)
+- CLI tools (fzf, bat, eza, zoxide, delta)
+- Create symlinks for `.zshrc` and `~/.config/zsh`
+
+## Manual Setup
 
 ### Linking to ~/.config
 
-Link the dot-files directory to `~/.config` and Link the `.zshrc` file to `~/.zshrc`:
+Link the dot-files directory to `~/.config` and the `.zshrc` file to `~/.zshrc`:
 
 ```bash
-ln -s ~/dot-files/zsh ~/.config/zsh
-ln -s ~/dot-files/.zshrc ~/.zshrc
+ln -s ~/Projects/dot-files/zsh ~/.config/zsh
+ln -s ~/Projects/dot-files/.zshrc ~/.zshrc
 ```
-
-This creates a symbolic link so that `~/.config/zsh` points to `~/dot-files/zsh`.
 
 ### First Time Setup
 
@@ -23,12 +39,22 @@ After linking, source your `.zshrc` to load the configuration:
 source ~/.zshrc
 ```
 
-### Second Time Onwards
+### Reloading Configuration
 
-To apply your changes and reload your shell configuration, run the following command:
+To apply changes and reload your shell configuration:
 
 ```bash
 reload
 ```
 
-This will source your `~/.zshrc` and apply all changes immediately.
+## Tools Used
+
+| Tool | Description |
+|------|-------------|
+| [Oh My Zsh](https://ohmyz.sh/) | Zsh framework |
+| [Powerlevel10k](https://github.com/romkatv/powerlevel10k) | Zsh theme |
+| [fzf](https://github.com/junegunn/fzf) | Fuzzy finder |
+| [eza](https://github.com/eza-community/eza) | Modern ls replacement |
+| [bat](https://github.com/sharkdp/bat) | Modern cat with syntax highlighting |
+| [zoxide](https://github.com/ajeetdsouza/zoxide) | Smarter cd command |
+| [delta](https://github.com/dandavison/delta) | Better git diff |
