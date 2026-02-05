@@ -19,27 +19,9 @@ This will install:
 - zsh plugins (autosuggestions, syntax-highlighting, completions, z)
 - CLI tools (fzf, bat, eza, zoxide, delta)
 - Create symlinks for `.zshrc` and `~/.config/zsh`
+- Source `.zshrc` and run `p10k configure`
 
-## Manual Setup
-
-### Linking to ~/.config
-
-Link the dot-files directory to `~/.config` and the `.zshrc` file to `~/.zshrc`:
-
-```bash
-ln -s ~/Projects/dot-files/zsh ~/.config/zsh
-ln -s ~/Projects/dot-files/.zshrc ~/.zshrc
-```
-
-### First Time Setup
-
-After linking, source your `.zshrc` to load the configuration:
-
-```bash
-source ~/.zshrc
-```
-
-### Reloading Configuration
+## Reloading Configuration
 
 To apply changes and reload your shell configuration:
 

@@ -188,12 +188,11 @@ main() {
     create_symlinks
     set_default_shell
 
+    source ~/.zshrc
+    p10k configure
+
     echo ""
     print_status "Installation complete!"
-    echo ""
-    echo "Next steps:"
-    echo "  1. Open a new terminal or run: source ~/.zshrc"
-    echo "  2. Run 'p10k configure' to set up Powerlevel10k theme"
     echo ""
 }
 
