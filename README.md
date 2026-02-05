@@ -6,17 +6,26 @@ Personal dotfiles configuration repository.
 
 ### Linking to ~/.config
 
-Link the dot-files directory to `~/.config`:
+Link the dot-files directory to `~/.config` and Link the `.zshrc` file to `~/.zshrc`:
 
 ```bash
 ln -s ~/dot-files/zsh ~/.config/zsh
+ln -s ~/dot-files/.zshrc ~/.zshrc
 ```
 
 This creates a symbolic link so that `~/.config/zsh` points to `~/dot-files/zsh`.
 
-### Reload Shell Configuration
+### First Time Setup
 
-After making changes to your dotfiles, reload your shell configuration:
+After linking, source your `.zshrc` to load the configuration:
+
+```bash
+source ~/.zshrc
+```
+
+### Second Time Onwards
+
+To apply your changes and reload your shell configuration, run the following command:
 
 ```bash
 reload
