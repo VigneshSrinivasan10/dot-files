@@ -1,5 +1,6 @@
 # Add local bin to path
 export PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 
 # Editor settings
 export EDITOR="vim"

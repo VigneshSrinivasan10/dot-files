@@ -22,3 +22,15 @@ source "$ZSH_CONFIG_DIR/keybindings.zsh"
 # LOAD POWERLEVEL10K CONFIG
 # ============================================
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+export PATH=/home/vsrini/.opencode/bin:$PATH
+
+unset PREFIX
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+nvm alias default v20.20.0
+
+# SSH agent auto-start
+if [ -z "$SSH_AUTH_SOCK" ]; then
+    eval "$(ssh-agent -s)" > /dev/null
+    ssh-add ~/.ssh/id_rsa 2>/dev/null
+fi
