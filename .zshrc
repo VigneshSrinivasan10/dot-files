@@ -12,7 +12,7 @@ source "$ZSH_CONFIG_DIR/env.zsh"
 source "$ZSH_CONFIG_DIR/tools.zsh"
 source "$ZSH_CONFIG_DIR/aliases/core.zsh"
 source "$ZSH_CONFIG_DIR/aliases/git.zsh"
-source "$ZSH_CONFIG_DIR/aliases/projects.zsh"
+[[ -f "$ZSH_CONFIG_DIR/aliases/projects.zsh" ]] && source "$ZSH_CONFIG_DIR/aliases/projects.zsh"
 source "$ZSH_CONFIG_DIR/functions.zsh"
 source "$ZSH_CONFIG_DIR/tmux.zsh"
 source "$ZSH_CONFIG_DIR/slurm.zsh"
@@ -27,7 +27,7 @@ export PATH=/home/vsrini/.opencode/bin:$PATH
 unset PREFIX
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-nvm alias default v20.20.0
+nvm alias default v20.20.0 > /dev/null 2>&1
 
 # SSH agent auto-start
 if [ -z "$SSH_AUTH_SOCK" ]; then
