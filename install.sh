@@ -171,10 +171,26 @@ create_symlinks() {
 set_default_shell() {
     if [ "$SHELL" = "$(which zsh)" ]; then
         print_status "zsh is already the default shell"
-    else
-        print_status "Setting zsh as default shell..."
-        chsh -s "$(which zsh)"
+        return
+    fi
+
+    print_status "Setting zsh as default shell..."
+    if chsh -s "$(which zsh)" 2>/dev/null; then
+        print_status "Default shell changed to zsh via chsh"
         print_warning "Please log out and back in for the shell change to take effect"
+    else
+        print_warning "chsh failed (common on remote/shared machines), adding fallback to ~/.bashrc"
+        local zsh_exec_block='# Launch zsh if available
+if [ -x "$(command -v zsh)" ]; then
+  exec zsh -l
+fi'
+        if ! grep -q 'exec zsh' "$HOME/.bashrc" 2>/dev/null; then
+            echo "" >> "$HOME/.bashrc"
+            echo "$zsh_exec_block" >> "$HOME/.bashrc"
+            print_status "Added zsh auto-launch to ~/.bashrc"
+        else
+            print_status "~/.bashrc already has zsh auto-launch"
+        fi
     fi
 }
 
