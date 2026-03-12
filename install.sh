@@ -141,9 +141,15 @@ create_symlinks() {
         mv "$HOME/.zshrc" "$HOME/.zshrc.backup"
     fi
 
+    if [ -f "$HOME/.tmux.conf" ] && [ ! -L "$HOME/.tmux.conf" ]; then
+        print_warning "Backing up existing .tmux.conf to .tmux.conf.backup"
+        mv "$HOME/.tmux.conf" "$HOME/.tmux.conf.backup"
+    fi
+
     # Remove existing symlinks
     [ -L "$HOME/.zshrc" ] && rm "$HOME/.zshrc"
     [ -L "$HOME/.config/zsh" ] && rm "$HOME/.config/zsh"
+    [ -L "$HOME/.tmux.conf" ] && rm "$HOME/.tmux.conf"
 
     # Create .config directory if it doesn't exist
     mkdir -p "$HOME/.config"
@@ -151,10 +157,12 @@ create_symlinks() {
     # Create symlinks
     ln -s "$DOTFILES_DIR/.zshrc" "$HOME/.zshrc"
     ln -s "$DOTFILES_DIR/zsh" "$HOME/.config/zsh"
+    ln -s "$DOTFILES_DIR/.tmux.conf" "$HOME/.tmux.conf"
 
     print_status "Symlinks created:"
     echo "  ~/.zshrc -> $DOTFILES_DIR/.zshrc"
     echo "  ~/.config/zsh -> $DOTFILES_DIR/zsh"
+    echo "  ~/.tmux.conf -> $DOTFILES_DIR/.tmux.conf"
 }
 
 # ============================================
