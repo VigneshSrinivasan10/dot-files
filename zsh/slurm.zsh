@@ -1,3 +1,8 @@
+# 'slurmviz': Interactive TUI dashboard for Slurm GPU cluster status
+# Install: pip install textual
+alias slurmviz='python3 ~/slurmviz/slurmviz.py'
+alias slurmviz-demo='python3 ~/slurmviz/slurmviz.py --demo'
+
 # 'sq': Show ONLY my jobs with clean formatting
 # Columns: ID, Partition, JobName, User, State, Time, Nodes, Reason/Nodelist
 alias sq='squeue -u $USER -o "%.10i %.9P %.20j %.8u %.2t %.10M %.4D %R"'
