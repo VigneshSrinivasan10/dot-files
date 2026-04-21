@@ -2,6 +2,11 @@
 bindkey -v
 export KEYTIMEOUT=1
 
+# Bracketed paste — protects against vi-mode interpreting paste-end ESC[201~
+# (which would toggle the case of the last pasted character via vi `~`)
+autoload -Uz bracketed-paste-magic
+zle -N bracketed-paste bracketed-paste-magic
+
 # Better navigation
 bindkey '^[[A' up-line-or-search    # Up arrow
 bindkey '^[[B' down-line-or-search  # Down arrow

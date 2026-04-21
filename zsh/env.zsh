@@ -3,8 +3,8 @@ export PATH="$HOME/.local/bin:$HOME/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 
 # Editor settings
-export EDITOR="vim"
-export VISUAL="vim"
+export EDITOR="emacs"
+export VISUAL="emacs"
 
 # Better man pages
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
