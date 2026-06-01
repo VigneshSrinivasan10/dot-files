@@ -29,10 +29,7 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 nvm alias default v20.20.0 > /dev/null 2>&1
 
-# SSH agent auto-start
-if [ -z "$SSH_AUTH_SOCK" ]; then
-    eval "$(ssh-agent -s)" > /dev/null
-    ssh-add ~/.ssh/id_rsa 2>/dev/null
-fi
+# SSH agent setup moved to ~/.zshenv (persistent fixed-socket agent, so
+# non-interactive shells — e.g. tool/CI shells — get it too). See ~/.zshenv.
 
 . "$HOME/.local/bin/env"
