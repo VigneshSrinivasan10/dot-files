@@ -135,34 +135,28 @@ install_cli_tools() {
 create_symlinks() {
     print_status "Creating symlinks..."
 
-    # Backup existing files if they're not symlinks
-    if [ -f "$HOME/.zshrc" ] && [ ! -L "$HOME/.zshrc" ]; then
-        print_warning "Backing up existing .zshrc to .zshrc.backup"
-        mv "$HOME/.zshrc" "$HOME/.zshrc.backup"
-    fi
+    local files=(".zshrc" ".zshenv" ".bashrc" ".tmux.conf")
 
-    if [ -f "$HOME/.tmux.conf" ] && [ ! -L "$HOME/.tmux.conf" ]; then
-        print_warning "Backing up existing .tmux.conf to .tmux.conf.backup"
-        mv "$HOME/.tmux.conf" "$HOME/.tmux.conf.backup"
-    fi
+    for file in "${files[@]}"; do
+        # Backup existing files if they're not symlinks
+        if [ -f "$HOME/$file" ] && [ ! -L "$HOME/$file" ]; then
+            print_warning "Backing up existing $file to $file.backup"
+            mv "$HOME/$file" "$HOME/$file.backup"
+        fi
+        [ -L "$HOME/$file" ] && rm "$HOME/$file"
+        ln -s "$DOTFILES_DIR/$file" "$HOME/$file"
+    done
 
-    # Remove existing symlinks
-    [ -L "$HOME/.zshrc" ] && rm "$HOME/.zshrc"
+    # zsh config directory
     [ -L "$HOME/.config/zsh" ] && rm "$HOME/.config/zsh"
-    [ -L "$HOME/.tmux.conf" ] && rm "$HOME/.tmux.conf"
-
-    # Create .config directory if it doesn't exist
     mkdir -p "$HOME/.config"
-
-    # Create symlinks
-    ln -s "$DOTFILES_DIR/.zshrc" "$HOME/.zshrc"
     ln -s "$DOTFILES_DIR/zsh" "$HOME/.config/zsh"
-    ln -s "$DOTFILES_DIR/.tmux.conf" "$HOME/.tmux.conf"
 
     print_status "Symlinks created:"
-    echo "  ~/.zshrc -> $DOTFILES_DIR/.zshrc"
+    for file in "${files[@]}"; do
+        echo "  ~/$file -> $DOTFILES_DIR/$file"
+    done
     echo "  ~/.config/zsh -> $DOTFILES_DIR/zsh"
-    echo "  ~/.tmux.conf -> $DOTFILES_DIR/.tmux.conf"
 }
 
 # ============================================
